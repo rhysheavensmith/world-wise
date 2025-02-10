@@ -1,5 +1,8 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Login.module.css';
+import Button from '../components/Button';
+import PageNav from '../components/PageNav';
 
 export default function Login() {
 	// PRE-FILL FOR DEV PURPOSES
@@ -8,6 +11,7 @@ export default function Login() {
 
 	return (
 		<main className={styles.login}>
+			<PageNav />
 			<form className={styles.form}>
 				<div className={styles.row}>
 					<label htmlFor='email'>Email address</label>
@@ -29,9 +33,9 @@ export default function Login() {
 					/>
 				</div>
 
-				<div>
-					<button>Login</button>
-				</div>
+				<Link to='/app'>
+					<Button>Login</Button>
+				</Link>
 			</form>
 		</main>
 	);

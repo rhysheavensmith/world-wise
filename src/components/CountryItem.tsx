@@ -1,10 +1,5 @@
 import styles from './CountryItem.module.css';
-
-// Define a type for the country data
-interface CountryData {
-	emoji: string;
-	country: string;
-}
+import { CountryData } from '../types';
 
 // Define a type for the component props
 interface CountryItemProps {

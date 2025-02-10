@@ -1,20 +1,13 @@
 import styles from './City.module.css';
-
-// Type for city data
-interface CityData {
-	cityName: string;
-	emoji: string;
-	date: string; // Keep as string since it comes from an API
-	notes?: string; // Optional because notes might not always be present
-}
-
+import { CityData } from '../types';
 // Function to format the date safely
 const formatDate = (dateString: string | null): string => {
-	if (!dateString) return 'Invalid Date'; // Handle null/empty cases safely
-
+	// Handle null/empty cases safely
+	if (!dateString) return 'Invalid Date';
 	const date = new Date(dateString);
-	if (isNaN(date.getTime())) return 'Invalid Date'; // Handle invalid date strings
-
+	// Handle invalid date strings
+	if (isNaN(date.getTime())) return 'Invalid Date';
+	// Return the formatted date
 	return new Intl.DateTimeFormat('en', {
 		day: 'numeric',
 		month: 'long',
