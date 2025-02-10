@@ -9,6 +9,7 @@ import PageNotFound from './pages/PageNotFound';
 import AppLayout from './pages/AppLayout';
 import Login from './pages/Login';
 import CityList from './components/CityList';
+import CountryList from './components/CountryList';
 
 function App() {
 	const [cities, setCities] = useState<City[]>([]);
@@ -63,7 +64,16 @@ function App() {
 							/>
 						}
 					/>
-					<Route path='countries' element={<div>Countries</div>} />
+					<Route
+						path='countries'
+						element={
+							<CountryList
+								cities={cities}
+								loading={loading}
+								error={error ? error.message : ''}
+							/>
+						}
+					/>
 				</Route>
 				<Route path='/login' element={<Login />} />
 			</Routes>

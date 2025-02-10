@@ -1,8 +1,8 @@
 import styles from './Map.module.css';
 
-interface MapProps {}
+// interface MapProps {}
 
-const Map: React.FC<MapProps> = () => {
+const Map = () => {
 	return <div className={styles.mapContainer}>map</div>;
 };
 
