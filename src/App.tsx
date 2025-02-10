@@ -10,8 +10,6 @@ import AppLayout from './pages/AppLayout';
 import Login from './pages/Login';
 import CityList from './components/CityList';
 
-// city interface
-
 function App() {
 	const [cities, setCities] = useState<City[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
@@ -29,8 +27,9 @@ function App() {
 				if (!response.ok) {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
-				const data: { cities: City[] } = await response.json();
-				setCities(data.cities);
+				const data: Array<City> = await response.json();
+				setCities(data);
+				console.log(data);
 			} catch (error) {
 				if ((error as Error).name !== 'AbortError') {
 					setError(error as Error);
@@ -54,7 +53,16 @@ function App() {
 				<Route path='*' element={<PageNotFound />} />
 				<Route path='/app' element={<AppLayout />}>
 					<Route index element={<Navigate to='cities' replace />} />
-					<Route path='cities' element={<CityList />} />
+					<Route
+						path='cities'
+						element={
+							<CityList
+								cities={cities}
+								loading={loading}
+								error={error ? error.message : ''}
+							/>
+						}
+					/>
 					<Route path='countries' element={<div>Countries</div>} />
 				</Route>
 				<Route path='/login' element={<Login />} />

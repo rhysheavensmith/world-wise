@@ -1,11 +1,24 @@
 import styles from './CityList.module.css';
+import CityItem from './CityItem';
+import Spinner from './Spinner';
+import Message from './Message';
+import { City } from '../types';
 
-interface CityListProps {}
+interface CityListProps {
+	cities: Array<City>;
+	loading: boolean;
+	error: string;
+}
 
-const CityList: React.FC<CityListProps> = () => {
+const CityList: React.FC<CityListProps> = ({ cities, loading, error }) => {
+	if (loading) return <Spinner />;
+	if (cities.length === 0) return <Message message='No cities to display' />;
+	if (error) return <Message message={error} />;
 	return (
 		<ul className={styles.cityList}>
-			<li>City 1</li>
+			{cities.map((city) => {
+				return <CityItem key={city.cityName} city={city} />;
+			})}
 		</ul>
 	);
 };
