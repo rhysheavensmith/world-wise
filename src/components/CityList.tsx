@@ -2,10 +2,10 @@ import styles from './CityList.module.css';
 import CityItem from './CityItem';
 import Spinner from './Spinner';
 import Message from './Message';
-import { City } from '../types';
+import { CityData } from '../types';
 
 interface CityListProps {
-	cities: Array<City>;
+	cities: Array<CityData>;
 	loading: boolean;
 	error: string;
 }

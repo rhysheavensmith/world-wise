@@ -5,13 +5,6 @@ export interface CountryData {
 
 export interface CityData {
 	cityName: string;
-	emoji: string;
-	date: string;
-	notes?: string;
-}
-
-export interface City {
-	cityName: string;
 	country: string;
 	emoji: string;
 	date: string;

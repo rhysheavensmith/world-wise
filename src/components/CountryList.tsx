@@ -1,4 +1,4 @@
-import { City, CountryData } from '../types';
+import { CityData, CountryData } from '../types';
 import styles from './CountryList.module.css';
 
 import Spinner from './Spinner';
@@ -6,7 +6,7 @@ import Message from './Message';
 import CountryItem from './CountryItem';
 
 interface CountryListProps {
-	cities: Array<City>;
+	cities: Array<CityData>;
 	loading: boolean;
 	error: string;
 }

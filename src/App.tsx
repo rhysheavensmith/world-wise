@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { City } from './types';
+import { CityData } from './types';
 
 import Homepage from './pages/HomePage';
 import Product from './pages/Product';
@@ -10,9 +10,11 @@ import AppLayout from './pages/AppLayout';
 import Login from './pages/Login';
 import CityList from './components/CityList';
 import CountryList from './components/CountryList';
+import City from './components/City';
+import Form from './components/Form';
 
 function App() {
-	const [cities, setCities] = useState<City[]>([]);
+	const [cities, setCities] = useState<CityData[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
 	const [error, setError] = useState<Error | null>(null);
 
@@ -28,7 +30,7 @@ function App() {
 				if (!response.ok) {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
-				const data: Array<City> = await response.json();
+				const data: Array<CityData> = await response.json();
 				setCities(data);
 				console.log(data);
 			} catch (error) {
@@ -64,6 +66,7 @@ function App() {
 							/>
 						}
 					/>
+					<Route path='cities/:id' element={<City />} />
 					<Route
 						path='countries'
 						element={
@@ -74,7 +77,9 @@ function App() {
 							/>
 						}
 					/>
+					<Route path='form' element={<Form />} />
 				</Route>
+
 				<Route path='/login' element={<Login />} />
 			</Routes>
 		</BrowserRouter>
